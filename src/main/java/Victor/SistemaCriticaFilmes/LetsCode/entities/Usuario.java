@@ -1,9 +1,12 @@
 package Victor.SistemaCriticaFilmes.LetsCode.entities;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Component
 @Table(name = "tb_usuario")
 public class Usuario {
     @Id
@@ -14,8 +17,7 @@ public class Usuario {
     @Column(name = "password")
     private String password;
 
-    //@manytomany
+    @ManyToMany
     private List<Perfil> perfils;
 
-    //id, username, passwprd, lista de perfil, nota filme
 }
