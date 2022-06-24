@@ -1,18 +1,20 @@
 package Victor.SistemaCriticaFilmes.LetsCode.services;
 
+import org.springframework.stereotype.Service;
+
 import Victor.SistemaCriticaFilmes.LetsCode.entities.Usuario;
 import Victor.SistemaCriticaFilmes.LetsCode.repositores.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
-    @Autowired
-    private final UsuarioRepository usuarioRepository;
 
-    public void cadastrarUsuario(Usuario usuario){
-this.usuarioRepository.save(usuario);
-    }
+	private final UsuarioRepository usuarioRepository;
+
+	public void cadastrarUsuario(Usuario usuario) {
+		this.usuarioRepository.save(usuario);
+	}
+	
+	
 }

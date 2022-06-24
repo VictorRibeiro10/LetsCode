@@ -1,23 +1,41 @@
 package Victor.SistemaCriticaFilmes.LetsCode.entities;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
-import java.util.List;
+import lombok.Data;
 
 @Entity
 @Component
 @Table(name = "tb_usuario")
+@Data
 public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "password")
-    private String password;
 
-    @ManyToMany
-    private List<Perfil> perfils;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idUsuario;
+
+	@Column(unique = true)
+	private String username;
+
+	private String password;
+
+	@ManyToMany
+	@JoinTable(
+			  name = "tb_usuario_perfil", 
+			  joinColumns = @JoinColumn(name = "id_usuario"), 
+			  inverseJoinColumns = @JoinColumn(name = "id_perfil"))
+	private List<Perfil> perfils;
 
 }
