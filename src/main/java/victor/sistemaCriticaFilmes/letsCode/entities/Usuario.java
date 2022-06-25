@@ -1,4 +1,4 @@
-package Victor.SistemaCriticaFilmes.LetsCode.entities;
+package victor.sistemaCriticaFilmes.letsCode.entities;
 
 import java.util.List;
 

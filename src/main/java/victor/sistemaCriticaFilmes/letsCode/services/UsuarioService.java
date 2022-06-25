@@ -1,9 +1,9 @@
-package Victor.SistemaCriticaFilmes.LetsCode.services;
+package victor.sistemaCriticaFilmes.letsCode.services;
 
 import org.springframework.stereotype.Service;
 
-import Victor.SistemaCriticaFilmes.LetsCode.entities.Usuario;
-import Victor.SistemaCriticaFilmes.LetsCode.repositores.UsuarioRepository;
+import victor.sistemaCriticaFilmes.letsCode.entities.Usuario;
+import victor.sistemaCriticaFilmes.letsCode.repositores.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

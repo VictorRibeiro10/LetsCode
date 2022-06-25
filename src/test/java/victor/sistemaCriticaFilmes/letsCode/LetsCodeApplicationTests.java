@@ -1,4 +1,4 @@
-package Victor.SistemaCriticaFilmes.LetsCode;
+package victor.sistemaCriticaFilmes.letsCode;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

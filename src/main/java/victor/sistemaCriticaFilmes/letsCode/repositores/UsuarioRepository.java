@@ -1,6 +1,6 @@
-package Victor.SistemaCriticaFilmes.LetsCode.repositores;
+package victor.sistemaCriticaFilmes.letsCode.repositores;
 
-import Victor.SistemaCriticaFilmes.LetsCode.entities.Usuario;
+import victor.sistemaCriticaFilmes.letsCode.entities.Usuario;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
