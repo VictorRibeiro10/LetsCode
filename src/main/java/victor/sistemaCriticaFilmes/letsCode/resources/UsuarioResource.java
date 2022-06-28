@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/usuario")
+@RequestMapping(path = "/usuarios")
 @RequiredArgsConstructor
 public class UsuarioResource {
 
