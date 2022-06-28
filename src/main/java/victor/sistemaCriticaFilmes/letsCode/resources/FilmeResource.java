@@ -19,7 +19,7 @@ public class FilmeResource {
     private final FilmeService filmeService;
 
     @GetMapping
-    public ResponseEntity<FilmeDTO> getFilme(@RequestParam("titulo") String titulo) throws JsonProcessingException {
+    public ResponseEntity<FilmeDTO> getFilme(@RequestParam("titulo") String titulo) {
       FilmeDTO filme = filmeService.buscarFilmePeloTitulo(titulo);
       return new ResponseEntity<>(filme, HttpStatus.OK);
     }

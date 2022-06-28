@@ -15,14 +15,18 @@ import java.util.List;
 
 @Configuration
 public class RestTemplateConfig {
-    @Bean
-  public RestTemplate restTemplate(RestTemplateBuilder builder){
-        RestTemplate  restTemplate = new RestTemplate();
-        List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-        messageConverters.add(converter);
-        restTemplate.setMessageConverters(messageConverters);
-        return restTemplate;
-  }
+
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+		RestTemplate restTemplate = new RestTemplate();
+
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+
+		return restTemplate;
+	}
+	
 }
