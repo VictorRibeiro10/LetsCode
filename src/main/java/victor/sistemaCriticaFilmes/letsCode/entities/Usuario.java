@@ -1,6 +1,7 @@
 package victor.sistemaCriticaFilmes.letsCode.entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 @Entity
-@Component
 @Table(name = "tb_usuario")
 @Data
 public class Usuario {
@@ -36,6 +36,7 @@ public class Usuario {
 			  name = "tb_usuario_perfil", 
 			  joinColumns = @JoinColumn(name = "id_usuario"), 
 			  inverseJoinColumns = @JoinColumn(name = "id_perfil"))
-	private List<Perfil> perfils;
+	private Set<Perfil> perfils;
+	
 
 }

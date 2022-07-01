@@ -1,13 +1,10 @@
 package victor.sistemaCriticaFilmes.letsCode.entities;
 
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Component
 @Table(name = "tb_perfil")
 @Data
 public class Perfil{

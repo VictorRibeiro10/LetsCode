@@ -1,8 +1,5 @@
 package victor.sistemaCriticaFilmes.letsCode.services;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,4 +37,22 @@ public class FilmeService {
 		return restTemplate.exchange(uri, HttpMethod.GET, entity, FilmeDTO.class).getBody();
 
 	}
+	
+	public FilmeDTO buscarFilmePeloId(String id) {
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+
+			HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+			String uri = UriComponentsBuilder.fromHttpUrl(url).queryParam("apikey", apiKey).queryParam("i", id)
+					.toUriString();
+
+			return restTemplate.exchange(uri, HttpMethod.GET, entity, FilmeDTO.class).getBody();
+		}catch (Exception e) {
+			return new FilmeDTO();
+		}
+	}
+	
+
 }

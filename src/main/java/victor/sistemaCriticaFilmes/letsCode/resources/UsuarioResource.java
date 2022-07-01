@@ -15,7 +15,7 @@ public class UsuarioResource {
 
 	private final UsuarioService usuarioService;
 
-	@GetMapping
+	@PostMapping
 	public ResponseEntity<Void> cadastrarUsuario(@RequestBody Usuario usuario) {
 		this.usuarioService.cadastrarUsuario(usuario);
 		return new ResponseEntity<>(HttpStatus.CREATED);
