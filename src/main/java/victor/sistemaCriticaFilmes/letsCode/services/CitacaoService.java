@@ -32,4 +32,8 @@ public class CitacaoService {
 		citacaoComentarioRepository.save(citacaoComentario);
 		pontoService.incrementarPontuacaoUsuario(1L, usuario);
 	}
+	
+	public void removerCitacaoComentario(Long idComentario) {
+		citacaoComentarioRepository.deleteCitacoesComentario(idComentario);
+	}
 }

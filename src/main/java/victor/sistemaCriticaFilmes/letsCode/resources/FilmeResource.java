@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,9 +82,16 @@ public class FilmeResource {
 		comentarioFilmeService.likeComentario(idComentario, like);
 		return ResponseEntity.ok(null);
 	}
+	
 	@PostMapping("/repetido/comentario/{idComentario}")
-	public ResponseEntity<Void> ComentarioRepetido(@PathVariable Long idComentario, @RequestParam("repetido") Boolean repetido) {
+	public ResponseEntity<Void> comentarioRepetido(@PathVariable Long idComentario, @RequestParam("repetido") Boolean repetido) {
 		comentarioFilmeService.comentarioRepetido(idComentario, repetido);
+		return ResponseEntity.ok(null);
+	}
+	
+	@DeleteMapping("/comentarios/{idComentario}")
+	public ResponseEntity<Void> deletarComentario(@PathVariable Long idComentario) {
+		comentarioFilmeService.deletarComentario(idComentario);
 		return ResponseEntity.ok(null);
 	}
 }

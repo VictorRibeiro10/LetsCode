@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"/filmes/citacoes/comentario/**").hasAnyRole("AVANCADO", "MODERADOR");
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"/filmes/like/comentario/**").hasAnyRole("AVANCADO", "MODERADOR");
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"/filmes/repetido/comentario/**").hasAnyRole("MODERADOR");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/filmes/comentarios/**").hasAnyRole("MODERADOR");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.addFilterBefore(new CustomAuthorizationFilter(), BasicAuthenticationFilter.class);
 	}

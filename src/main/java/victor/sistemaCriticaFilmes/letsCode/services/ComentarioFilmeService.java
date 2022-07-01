@@ -25,6 +25,7 @@ public class ComentarioFilmeService {
 	private final PontoService pontoService;
 	private final LikeRepository likeRepository;
 	private final ComentarioRepetidoRepository comentarioRepetidoRepository;
+	private final CitacaoService citacaoService;
 
 	public void comentarFilme(ComentarioFilmeDTO comentarioFilmeDTO) throws Exception {
 		String idFilme = comentarioFilmeDTO.getIdFilme();
@@ -117,6 +118,19 @@ public class ComentarioFilmeService {
 		comentarioRepetidoRepository.save(comentarioExistente);
 
 	}
+	
+	public void deletarComentario(Long idComentario) {
+		ComentarioFilme comentarioEntity = new ComentarioFilme();
+		comentarioEntity.setIdComentarioFilme(idComentario);
+		
+		citacaoService.removerCitacaoComentario(idComentario);
+		comentarioRepetidoRepository.deleteComentariosRepetidos(idComentario);
+		likeRepository.deleteLikes(idComentario);
+		respostaComentarioRepository.deleteRespostasComentario(idComentario);
+		
+		comentarioRepository.delete(comentarioEntity);
+	}
+	
 	public List<ComentarioFilme> getComentarioDoFilmePorId(String idFilme){
 		return comentarioRepository.findComentariosByIdFilme(idFilme);
 	}

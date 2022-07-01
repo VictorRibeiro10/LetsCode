@@ -26,4 +26,6 @@ public class ComentarioFilme {
 	private Usuario usuario;
 	
 	private String comentario;
+	
+	
 }
