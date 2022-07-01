@@ -2,11 +2,8 @@ package victor.sistemaCriticaFilmes.letsCode.resources;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,6 +79,11 @@ public class FilmeResource {
 	@PostMapping("/like/comentario/{idComentario}")
 	public ResponseEntity<Void> likeComentario(@PathVariable Long idComentario, @RequestParam("like") Boolean like) {
 		comentarioFilmeService.likeComentario(idComentario, like);
+		return ResponseEntity.ok(null);
+	}
+	@PostMapping("/repetido/comentario/{idComentario}")
+	public ResponseEntity<Void> ComentarioRepetido(@PathVariable Long idComentario, @RequestParam("repetido") Boolean repetido) {
+		comentarioFilmeService.comentarioRepetido(idComentario, repetido);
 		return ResponseEntity.ok(null);
 	}
 }

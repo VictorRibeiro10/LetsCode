@@ -9,18 +9,10 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import victor.sistemaCriticaFilmes.letsCode.dto.ComentarioFilmeDTO;
 import victor.sistemaCriticaFilmes.letsCode.dto.FilmeDTO;
-import victor.sistemaCriticaFilmes.letsCode.entities.CitacaoComentario;
-import victor.sistemaCriticaFilmes.letsCode.entities.ComentarioFilme;
-import victor.sistemaCriticaFilmes.letsCode.entities.Like;
-import victor.sistemaCriticaFilmes.letsCode.entities.RespostaComentario;
-import victor.sistemaCriticaFilmes.letsCode.entities.Usuario;
+import victor.sistemaCriticaFilmes.letsCode.entities.*;
 import victor.sistemaCriticaFilmes.letsCode.exceptions.BadAvaliacaoException;
 import victor.sistemaCriticaFilmes.letsCode.exceptions.NotFoundException;
-import victor.sistemaCriticaFilmes.letsCode.repositores.CitacaoComentarioRepository;
-import victor.sistemaCriticaFilmes.letsCode.repositores.ComentarioRepository;
-import victor.sistemaCriticaFilmes.letsCode.repositores.LikeRepository;
-import victor.sistemaCriticaFilmes.letsCode.repositores.RespostaComentarioRepository;
-import victor.sistemaCriticaFilmes.letsCode.repositores.UsuarioRepository;
+import victor.sistemaCriticaFilmes.letsCode.repositores.*;
 
 @Service
 @RequiredArgsConstructor
@@ -31,8 +23,8 @@ public class ComentarioFilmeService {
 	private final FilmeService filmeService;
 	private final UsuarioRepository usuarioRepository;
 	private final PontoService pontoService;
-	private final CitacaoComentarioRepository citacaoComentarioRepository;
 	private final LikeRepository likeRepository;
+	private final ComentarioRepetidoRepository comentarioRepetidoRepository;
 
 	public void comentarFilme(ComentarioFilmeDTO comentarioFilmeDTO) throws Exception {
 		String idFilme = comentarioFilmeDTO.getIdFilme();
@@ -60,7 +52,7 @@ public class ComentarioFilmeService {
 		pontoService.incrementarPontuacaoUsuario(1L, usuario);
 		
 	}
-	
+
 	public void comentarComentario(Long idComentario, String comentario) throws Exception {
 		
 		if (StringUtils.isEmpty(comentario)) {
@@ -103,11 +95,32 @@ public class ComentarioFilmeService {
 		
 		likeRepository.save(likeExistente);
 	}
-	
-	
+
+	public void comentarioRepetido(Long idComentario, Boolean repetido) {
+		ComentarioFilme comentarioEntity = new ComentarioFilme();
+		comentarioEntity.setIdComentarioFilme(idComentario);
+
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Usuario usuario = usuarioRepository.findByUsername(username);
+
+		ComentarioRepetido comentarioExistente = comentarioRepetidoRepository.findByUsuarioAndComentario(usuario, comentarioEntity);
+
+		if (comentarioExistente != null) {
+			comentarioExistente.setRepetido(repetido);
+		} else {
+			comentarioExistente = new ComentarioRepetido();
+			comentarioExistente.setComentario(comentarioEntity);
+			comentarioExistente.setUsuario(usuario);
+			comentarioExistente.setRepetido(repetido);
+		}
+
+		comentarioRepetidoRepository.save(comentarioExistente);
+
+	}
 	public List<ComentarioFilme> getComentarioDoFilmePorId(String idFilme){
 		return comentarioRepository.findComentariosByIdFilme(idFilme);
 	}
-	
+
+
 
 }
